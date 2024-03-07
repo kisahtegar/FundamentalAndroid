@@ -54,7 +54,27 @@ class HomeFragment : Fragment(), View.OnClickListener {
         btnCategory.setOnClickListener(this)
     }
 
+    /**
+     * Called when a view has been clicked.
+     *
+     * @param v The view that was clicked.
+     */
     override fun onClick(v: View?) {
-        TODO("Not yet implemented")
+        // Check if the clicked view is the category button
+        if (v?.id == R.id.btn_category) {
+            // Instance of CategoryFragment
+            val categoryFragment = CategoryFragment()
+            // Get the FragmentManager of the parent activity
+            val fragmentManager = parentFragmentManager
+
+            // Begin a fragment transaction to replace the current fragment with the CategoryFragment
+            fragmentManager.beginTransaction().apply {
+                replace(R.id.frame_container, categoryFragment, CategoryFragment::class.java.simpleName)
+                // Add the transaction to the back stack to allow navigation back to the previous fragment
+                addToBackStack(null)
+                // Commit the transaction
+                commit()
+            }
+        }
     }
 }
