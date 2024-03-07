@@ -39,7 +39,7 @@ class CategoryFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val btnDetailCategory: Button = view.findViewById<Button>(R.id.btn_detail_category)
+        val btnDetailCategory: Button = view.findViewById(R.id.btn_detail_category)
         btnDetailCategory.setOnClickListener(this)
     }
 
@@ -51,7 +51,30 @@ class CategoryFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         // Check if the clicked view is the button for detailed category information
         if (v?.id == R.id.btn_detail_category) {
+            val detailCategoryFragment = DetailCategoryFragment()
 
+            // Create a Bundle to pass data to the DetailCategoryFragment
+            val bundle = Bundle()
+            bundle.putString(DetailCategoryFragment.EXTRA_NAME, "Lifestyle")
+
+            // Additional description to be passed to the DetailCategoryFragment
+            val description = "Kategori ini akan berisi produk-produk lifestyle"
+
+            // Set the arguments of the DetailCategoryFragment with the Bundle
+            detailCategoryFragment.arguments = bundle
+
+            // Set the description of the DetailCategoryFragment
+            detailCategoryFragment.description = description
+
+            // Begin a fragment transaction to replace the current fragment with the DetailCategoryFragment
+            val fragmentManager = parentFragmentManager
+            fragmentManager.beginTransaction().apply {
+                replace(R.id.frame_container, detailCategoryFragment, DetailCategoryFragment::class.java.simpleName)
+                // Add the transaction to the back stack to allow navigation back to the previous fragment
+                addToBackStack(null)
+                // Commit the transaction
+                commit()
+            }
         }
     }
 }
