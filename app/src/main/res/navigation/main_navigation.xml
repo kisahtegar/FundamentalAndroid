@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Main navigation graph for the application.
+    This navigation graph defines the navigation paths between different destinations in the app.
+-->
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/homeFragment">
+
+    <!-- Home Fragment -->
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.kisahcode.fundamentalandroid.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <!-- Navigation actions from Home Fragment -->
+        <action
+            android:id="@+id/action_homeFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileActivity"
+            app:destination="@id/profileActivity" />
+    </fragment>
+
+    <!-- Category Fragment -->
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.kisahcode.fundamentalandroid.CategoryFragment"
+        android:label="fragment_category"
+        tools:layout="@layout/fragment_category" >
+        <action
+            android:id="@+id/action_categoryFragment_to_detailCategoryFragment"
+            app:destination="@id/detailCategoryFragment" />
+    </fragment>
+
+    <!-- Profile Activity -->
+    <activity
+        android:id="@+id/profileActivity"
+        android:name="com.kisahcode.fundamentalandroid.ProfileActivity"
+        android:label="activity_profile"
+        tools:layout="@layout/activity_profile" />
+
+    <!-- Detail Category Fragment -->
+    <fragment
+        android:id="@+id/detailCategoryFragment"
+        android:name="com.kisahcode.fundamentalandroid.DetailCategoryFragment"
+        android:label="fragment_detail_category"
+        tools:layout="@layout/fragment_detail_category" />
+</navigation>
