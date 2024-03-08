@@ -10,3 +10,5 @@ Learn about Navigation specially Option Menu in AppBar.
 | Language                      | Kotlin                         |
 | Build Configuration Language  | Kotlin DSL                     |
 
+<img src="preview_1.png" alt="Preview 1">
+<img src="preview_2.png" alt="Preview 2">
