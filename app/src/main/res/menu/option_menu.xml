@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Menu resource file for the options menu displayed in the app bar -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Menu items group -->
+    <group android:menuCategory="container">
+
+        <!-- Menu item 1 -->
+        <item
+            android:id="@+id/menu1"
+            android:icon="@drawable/baseline_announcement_24"
+            android:title="@string/menu_1"
+            app:showAsAction="ifRoom" />
+
+        <!-- Menu item 2 -->
+        <item
+            android:id="@+id/menu2"
+            android:title="@string/menu_2"
+            app:showAsAction="never" />
+    </group>
+</menu>
