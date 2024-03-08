@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import com.kisahcode.fundamentalandroid.databinding.FragmentDetailCategoryBinding
 
 
@@ -59,6 +60,12 @@ class DetailCategoryFragment : Fragment() {
         "Stock: $dataDescription".also {
             binding.tvCategoryDescription.text = it
         }
+
+        // Set click listener for the home button to navigate back to the home fragment
+        binding.btnHome.setOnClickListener(
+            // Navigate to the home fragment
+            Navigation.createNavigateOnClickListener(R.id.action_detailCategoryFragment_to_homeFragment)
+        )
     }
 
     /**
