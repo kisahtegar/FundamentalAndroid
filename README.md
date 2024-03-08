@@ -1,5 +1,7 @@
 # Fundamental Android
 
+Learn about Navigation specially in Navigation Graph, SafeArg, Pop Up Behaviour, dan Animation.
+
 | Nama Project                  | MyNavigation                      |
 |-------------------------------|-----------------------------------|
 | Target & Minimum Target SDK   | Phone and Tablet, API level 21    |
