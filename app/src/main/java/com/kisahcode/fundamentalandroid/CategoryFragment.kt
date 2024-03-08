@@ -56,14 +56,24 @@ class CategoryFragment : Fragment() {
 
         // Set click listener for the lifestyle category button to navigate to the detail category fragment
         binding.btnCategoryLifestyle.setOnClickListener {
-            val bundle = Bundle().apply {
-                // Pass data to the detail category fragment
-                putString(EXTRA_NAME, "Lifestyle")
-                putLong(EXTRA_STOCK, 7)
-            }
+//            // This used bundle
+//            val bundle = Bundle().apply {
+//                // Pass data to the detail category fragment
+//                putString(EXTRA_NAME, "Lifestyle")
+//                putLong(EXTRA_STOCK, 7)
+//            }
+//            // Navigate to the detail category fragment with the provided bundle
+//            it.findNavController().navigate(R.id.action_categoryFragment_to_detailCategoryFragment, bundle)
+
+
+            // This used SafeArg
+            val toDetailCategoryFragment = CategoryFragmentDirections.actionCategoryFragmentToDetailCategoryFragment()
+            toDetailCategoryFragment.name = "Lifestyle"
+            toDetailCategoryFragment.stock = 7
 
             // Navigate to the detail category fragment with the provided bundle
-            it.findNavController().navigate(R.id.action_categoryFragment_to_detailCategoryFragment, bundle)
+            it.findNavController().navigate(toDetailCategoryFragment)
+
         }
     }
 

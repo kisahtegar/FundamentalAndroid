@@ -46,9 +46,13 @@ class DetailCategoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Retrieve data passed from the category fragment arguments
-        val dataName = arguments?.getString(CategoryFragment.EXTRA_NAME)
-        val dataDescription = arguments?.getLong(CategoryFragment.EXTRA_STOCK)
+//        // Retrieve data passed from the category fragment arguments (for Bundle)
+//        val dataName = arguments?.getString(CategoryFragment.EXTRA_NAME)
+//        val dataDescription = arguments?.getLong(CategoryFragment.EXTRA_STOCK)
+
+        // Retrieve data passed from the category fragment arguments (for SafeArg)
+        val dataName = DetailCategoryFragmentArgs.fromBundle(arguments as Bundle).name
+        val dataDescription = DetailCategoryFragmentArgs.fromBundle(arguments as Bundle).stock
 
         // Set the category name and description text views
         binding.tvCategoryName.text = dataName

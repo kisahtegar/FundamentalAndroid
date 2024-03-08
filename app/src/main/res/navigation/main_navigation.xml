@@ -47,5 +47,17 @@
         android:id="@+id/detailCategoryFragment"
         android:name="com.kisahcode.fundamentalandroid.DetailCategoryFragment"
         android:label="fragment_detail_category"
-        tools:layout="@layout/fragment_detail_category" />
+        tools:layout="@layout/fragment_detail_category" >
+        <!-- Safe Args: name -->
+        <argument
+            android:name="name"
+            app:argType="string"
+            android:defaultValue="default name" />
+
+        <!-- Safe Args: stock -->
+        <argument
+            android:name="stock"
+            app:argType="long"
+            android:defaultValue="0L" />
+    </fragment>
 </navigation>
