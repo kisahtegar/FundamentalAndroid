@@ -1,6 +1,6 @@
 # Fundamental Android
 
-Learn about Navigation specially Option Menu in AppBar.
+Learn about Navigation specially Option Menu in AppBar, implement search bar and search view.
 
 | Nama Project                  | MyAppBar                       |
 |-------------------------------|--------------------------------|
@@ -12,3 +12,4 @@ Learn about Navigation specially Option Menu in AppBar.
 
 <img src="preview_1.png" alt="Preview 1">
 <img src="preview_2.png" alt="Preview 2">
+<img src="preview_3.png" alt="Preview 3">
