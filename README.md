@@ -12,6 +12,4 @@ Learn about Background Thread. Simulation Asynchronous Process
 
 <img src="preview_1.png" alt="Preview 1" width="200" height="400">
 <img src="preview_2.png" alt="Preview 2" width="200" height="400">
-
-Tab Layout with One Fragment:
 <img src="preview_3.png" alt="Preview 3" width="200" height="400">
