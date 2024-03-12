@@ -1,5 +1,6 @@
 package com.kisahcode.fundamentalandroid
 
+import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -16,7 +17,7 @@ class SectionsPagerAdapter(activity: AppCompatActivity) : FragmentStateAdapter(a
      * @return The total number of fragments.
      */
     override fun getItemCount(): Int {
-        return 2 // Return the total number of fragments
+        return 3 // Return the total number of fragments
     }
 
     /**
@@ -25,10 +26,20 @@ class SectionsPagerAdapter(activity: AppCompatActivity) : FragmentStateAdapter(a
      * @return The fragment at the specified position.
      */
     override fun createFragment(position: Int): Fragment {
-        return when (position) {
-            0 -> HomeFragment() // Return HomeFragment for position 0
-            1 -> ProfileFragment() // Return ProfileFragment for position 1
-            else -> throw IllegalArgumentException("Invalid position: $position")
+
+//        // This used for Multiple fragment
+//        return when (position) {
+//            0 -> HomeFragment() // Return HomeFragment for position 0
+//            1 -> ProfileFragment() // Return ProfileFragment for position 1
+//            else -> throw IllegalArgumentException("Invalid position: $position")
+//        }
+
+
+        // This used for one fragment, in this case HomeFragment
+        val fragment = HomeFragment()
+        fragment.arguments = Bundle().apply {
+            putInt(HomeFragment.ARG_SECTION_NUMBER, position + 1)
         }
+        return fragment
     }
 }

@@ -5,11 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import android.widget.TextView
 
 /**
  * A simple [Fragment] subclass.
@@ -17,18 +13,14 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class HomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
+    /**
+     * Override onCreateView to create and return the fragment view hierarchy.
+     * @param inflater The LayoutInflater object that can be used to inflate any views in the fragment.
+     * @param container The parent view that the fragment's UI should be attached to.
+     * @param savedInstanceState A Bundle object containing the fragment's previously saved state, if any.
+     * @return Return the View for the fragment's UI.
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,23 +29,25 @@ class HomeFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
+    /**
+     * Override onViewCreated to perform operations after the fragment view has been created.
+     * @param view The View returned by onCreateView.
+     * @param savedInstanceState A Bundle object containing the fragment's previously saved state, if any.
+     */
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val tvLabel: TextView = view.findViewById(R.id.section_label)
+
+        // Retrieve the index argument passed to the fragment
+        val index = arguments?.getInt(ARG_SECTION_NUMBER, 0)
+
+        // Set the text of the TextView using a string resource with formatted text
+        tvLabel.text = getString(R.string.content_tab_text, index)
+    }
+
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+        // Argument key for the section number
+        const val ARG_SECTION_NUMBER = "section_number"
     }
 }
