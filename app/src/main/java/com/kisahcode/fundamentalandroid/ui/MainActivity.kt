@@ -1,8 +1,10 @@
 package com.kisahcode.fundamentalandroid.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -10,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.bumptech.glide.Glide
 import com.kisahcode.fundamentalandroid.data.response.CustomerReviewsItem
+import com.kisahcode.fundamentalandroid.data.response.PostReviewResponse
 import com.kisahcode.fundamentalandroid.data.response.Restaurant
 import com.kisahcode.fundamentalandroid.data.response.RestaurantResponse
 import com.kisahcode.fundamentalandroid.data.retrofit.ApiConfig
@@ -57,6 +60,12 @@ class MainActivity : AppCompatActivity() {
 
         // Fetch restaurant data from the API
         findRestaurant()
+
+        binding.btnSend.setOnClickListener { view ->
+            postReview(binding.edReview.text.toString())
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
+        }
     }
 
     /**
@@ -100,6 +109,43 @@ class MainActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call<RestaurantResponse>, t: Throwable) {
                 // Hide loading indicator and log error message on API call failure
+                showLoading(false)
+                Log.e(TAG, "onFailure: ${t.message}")
+            }
+        })
+    }
+
+    /**
+     * Posts a review for the restaurant and updates the review list accordingly.
+     *
+     * @param review The review content to be posted.
+     */
+    private fun postReview(review: String) {
+        showLoading(true)
+
+        // Create a Retrofit Call object to post the review
+        val client = ApiConfig.getApiService().postReview(RESTAURANT_ID, "Dicoding", review)
+
+        // Enqueue the asynchronous request
+        client.enqueue(object : Callback<PostReviewResponse> {
+            override fun onResponse(
+                call: Call<PostReviewResponse>,
+                response: Response<PostReviewResponse>
+            ) {
+                showLoading(false)
+                val responseBody = response.body()
+
+                // Check if the response is successful and the response body is not null
+                if (response.isSuccessful && responseBody != null) {
+                    // Update the review list with the new data
+                    setReviewData(responseBody.customerReviews)
+                } else {
+                    // Log an error message if the response is not successful
+                    Log.e(TAG, "onFailure: ${response.message()}")
+                }
+            }
+            override fun onFailure(call: Call<PostReviewResponse>, t: Throwable) {
+                // Hide the loading indicator and log the error message
                 showLoading(false)
                 Log.e(TAG, "onFailure: ${t.message}")
             }

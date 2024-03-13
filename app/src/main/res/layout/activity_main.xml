@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
 
+    <!-- ImageView for displaying the restaurant picture -->
     <ImageView
         android:id="@+id/ivPicture"
         android:layout_width="0dp"
@@ -19,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
+    <!-- TextView for displaying the restaurant title -->
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
@@ -34,6 +36,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivPicture" />
 
+    <!-- TextView for displaying the restaurant description -->
     <TextView
         android:id="@+id/tvDescription"
         android:layout_width="match_parent"
@@ -49,6 +52,7 @@
         app:layout_constraintStart_toStartOf="@+id/tvTitle"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
+    <!-- TextView for displaying the review section title -->
     <TextView
         android:id="@+id/tvReview"
         android:layout_width="match_parent"
@@ -63,6 +67,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvDescription" />
 
+    <!-- ProgressBar for indicating loading state -->
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyle"
@@ -75,6 +80,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible" />
 
+    <!-- TextInputLayout for inputting the review text -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/inputLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -85,6 +91,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvReview">
 
+        <!-- TextInputEditText for entering the review -->
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edReview"
             android:layout_width="match_parent"
@@ -93,6 +100,7 @@
             android:hint="@string/review" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- Button for sending the review -->
     <Button
         android:id="@+id/btnSend"
         android:layout_width="wrap_content"
@@ -104,6 +112,7 @@
         app:layout_constraintStart_toStartOf="@id/inputLayout"
         app:layout_constraintTop_toBottomOf="@id/inputLayout" />
 
+    <!-- RecyclerView for displaying the list of reviews -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvReview"
         android:layout_width="0dp"

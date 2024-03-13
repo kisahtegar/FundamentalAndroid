@@ -67,3 +67,23 @@ data class CustomerReviewsItem(
 	@field:SerializedName("name")
 	val name: String
 )
+
+/**
+ * Data class representing the response after posting a review to the restaurant.
+ * It contains a list of customer reviews, an error status, and an optional message.
+ *
+ * @property customerReviews The list of customer reviews.
+ * @property error A boolean indicating whether an error occurred.
+ * @property message An optional message providing additional information.
+ */
+data class PostReviewResponse(
+
+	@field:SerializedName("customerReviews")
+	val customerReviews: List<CustomerReviewsItem>,
+
+	@field:SerializedName("error")
+	val error: Boolean,
+
+	@field:SerializedName("message")
+	val message: String
+)
