@@ -2,25 +2,18 @@ package com.kisahcode.fundamentalandroid.ui
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.bumptech.glide.Glide
 import com.kisahcode.fundamentalandroid.data.response.CustomerReviewsItem
-import com.kisahcode.fundamentalandroid.data.response.PostReviewResponse
 import com.kisahcode.fundamentalandroid.data.response.Restaurant
-import com.kisahcode.fundamentalandroid.data.response.RestaurantResponse
-import com.kisahcode.fundamentalandroid.data.retrofit.ApiConfig
 import com.kisahcode.fundamentalandroid.databinding.ActivityMainBinding
-
-import retrofit2.Call
-import retrofit2.Callback;
-import retrofit2.Response
 
 /**
  * MainActivity class for displaying restaurant details and customer reviews.
@@ -52,104 +45,41 @@ class MainActivity : AppCompatActivity() {
         // Hide the action bar
         supportActionBar?.hide()
 
+        // Initialize ViewModel
+        val mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
+
+        // Observe changes in restaurant data
+        mainViewModel.restaurant.observe(this) {
+            setRestaurantData(it)
+        }
+
         // Set up the RecyclerView layout manager and item decoration
         val layoutManager = LinearLayoutManager(this)
         binding.rvReview.layoutManager = layoutManager
         val itemDecoration = DividerItemDecoration(this, layoutManager.orientation)
         binding.rvReview.addItemDecoration(itemDecoration)
 
-        // Fetch restaurant data from the API
-        findRestaurant()
+        // Observe changes in review data
+        mainViewModel.listReview.observe(this) {
+            setReviewData(it)
+        }
 
+        // Observe changes in loading state
+        mainViewModel.isLoading.observe(this) {
+            showLoading(it)
+        }
+
+        // Set click listener for sending reviews and hiding keyboard
         binding.btnSend.setOnClickListener { view ->
-            postReview(binding.edReview.text.toString())
+            // Call the postReview function of the MainViewModel with the review text entered in the EditText
+            mainViewModel.postReview(binding.edReview.text.toString())
+
+            // Get the InputMethodManager service to manage the keyboard
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+
+            // Hide the soft keyboard using the window token of the clicked view
             imm.hideSoftInputFromWindow(view.windowToken, 0)
         }
-    }
-
-    /**
-     * Fetches restaurant data from the API.
-     *
-     * This function sends a network request to retrieve restaurant details from the API endpoint.
-     * It updates the UI with the received data upon successful response or displays an error message
-     * on failure.
-     */
-    private fun findRestaurant() {
-        // Show loading indicator to indicate network request is in progress
-        showLoading(true)
-
-        // Create a Retrofit client instance to make HTTP GET request
-        val client = ApiConfig.getApiService().getRestaurant(RESTAURANT_ID)
-
-        // Asynchronously handle the API response using callbacks
-        client.enqueue(object : Callback<RestaurantResponse>{
-
-            override fun onResponse(
-                call: Call<RestaurantResponse>,
-                response: Response<RestaurantResponse>
-            ) {
-                // Hide loading indicator as the response is received
-                showLoading(false)
-
-                // Check if the response is successful (HTTP status code 2xx)
-                if (response.isSuccessful) {
-                    // Extract the response body containing restaurant details
-                    val responseBody = response.body()
-                    if (responseBody != null) {
-                        // Set restaurant data and customer reviews in the UI
-                        setRestaurantData(responseBody.restaurant)
-                        setReviewData(responseBody.restaurant.customerReviews)
-                    }
-                } else {
-                    // Log error message if response is unsuccessful
-                    Log.e(TAG, "onFailure: ${response.message()}")
-                }
-            }
-
-            override fun onFailure(call: Call<RestaurantResponse>, t: Throwable) {
-                // Hide loading indicator and log error message on API call failure
-                showLoading(false)
-                Log.e(TAG, "onFailure: ${t.message}")
-            }
-        })
-    }
-
-    /**
-     * Posts a review for the restaurant and updates the review list accordingly.
-     *
-     * @param review The review content to be posted.
-     */
-    private fun postReview(review: String) {
-        showLoading(true)
-
-        // Create a Retrofit Call object to post the review
-        val client = ApiConfig.getApiService().postReview(RESTAURANT_ID, "Dicoding", review)
-
-        // Enqueue the asynchronous request
-        client.enqueue(object : Callback<PostReviewResponse> {
-            override fun onResponse(
-                call: Call<PostReviewResponse>,
-                response: Response<PostReviewResponse>
-            ) {
-                showLoading(false)
-                val responseBody = response.body()
-
-                // Check if the response is successful and the response body is not null
-                if (response.isSuccessful && responseBody != null) {
-                    // Update the review list with the new data
-                    setReviewData(responseBody.customerReviews)
-                } else {
-                    // Log an error message if the response is not successful
-                    Log.e(TAG, "onFailure: ${response.message()}")
-                }
-            }
-            override fun onFailure(call: Call<PostReviewResponse>, t: Throwable) {
-                // Hide the loading indicator and log the error message
-                showLoading(false)
-                Log.e(TAG, "onFailure: ${t.message}")
-            }
-        })
     }
 
     /**

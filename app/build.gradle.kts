@@ -10,7 +10,7 @@ android {
     defaultConfig {
         applicationId = "com.kisahcode.fundamentalandroid"
         minSdk = 24
-        //noinspection ExpiredTargetSdkVersion
+        //noinspection EditedTargetSdkVersion,ExpiredTargetSdkVersion
         targetSdk = 24
         versionCode = 1
         versionName = "1.0"
