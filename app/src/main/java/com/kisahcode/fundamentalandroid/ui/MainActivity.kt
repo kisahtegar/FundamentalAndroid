@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import com.kisahcode.fundamentalandroid.data.response.CustomerReviewsItem
 import com.kisahcode.fundamentalandroid.data.response.Restaurant
 import com.kisahcode.fundamentalandroid.databinding.ActivityMainBinding
@@ -67,6 +68,20 @@ class MainActivity : AppCompatActivity() {
         // Observe changes in loading state
         mainViewModel.isLoading.observe(this) {
             showLoading(it)
+        }
+
+
+        // Observes changes in the snackbarText LiveData within the provided lifecycle owner (activity or fragment).
+        // Upon receiving an event, this method retrieves the content if it has not been handled yet,
+        // and displays a Snackbar with the retrieved text if available.
+        mainViewModel.snackbarText.observe(this) {
+            it.getContentIfNotHandled()?.let {snackBarText->
+                Snackbar.make(
+                    window.decorView.rootView,
+                    snackBarText,
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            }
         }
 
         // Set click listener for sending reviews and hiding keyboard

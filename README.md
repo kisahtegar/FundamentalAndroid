@@ -1,10 +1,11 @@
-# LiveData with Retrofit API
+# LiveData with Single Event
 
-This reference from [networking-retrofit](https://github.com/kisahtegar/FundamentalAndroid/tree/networking-retrofit)
-migrating using ViewModel for managing data related to the main activity and using LiveData objects 
-can be observed by components such as activities, fragments, or services, allowing them to react to 
-changes in the underlying data.
-
+This reference from [architecture-live-data-api](https://github.com/kisahtegar/FundamentalAndroid/tree/architecture-live-data-api)
+in this case app show snackbar after post. Basically LiveData will observe the data again when a 
+configuration change occurs. So, the problem is that even though LiveData is a single event, it will 
+always appear when the configuration changes. Even though functionally it shouldn't be like that. 
+To solved that we using a wrapper class for data exposed via a LiveData, representing an event that 
+should be handled only once.
 
 | Nama Project                  | RestaurantReview               |
 |-------------------------------|--------------------------------|
@@ -15,5 +16,4 @@ changes in the underlying data.
 | Build Configuration Language  | Kotlin DSL                     |
 
 <img src="preview_1.png" alt="Preview 1" width="200" height="400">
-<img src="preview_2.png" alt="Preview 2" width="200" height="400">
 

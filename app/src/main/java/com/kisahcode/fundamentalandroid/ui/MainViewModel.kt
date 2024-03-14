@@ -9,6 +9,7 @@ import com.kisahcode.fundamentalandroid.data.response.PostReviewResponse
 import com.kisahcode.fundamentalandroid.data.response.Restaurant
 import com.kisahcode.fundamentalandroid.data.response.RestaurantResponse
 import com.kisahcode.fundamentalandroid.data.retrofit.ApiConfig
+import com.kisahcode.fundamentalandroid.utils.Event
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,6 +30,10 @@ class MainViewModel : ViewModel() {
     // LiveData to indicate loading state
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
+
+    // LiveData for the snackbar text
+    private val _snackbarText = MutableLiveData<Event<String>>()
+    val snackbarText: LiveData<Event<String>> = _snackbarText
 
     companion object{
         private const val TAG = "MainViewModel"
@@ -100,6 +105,7 @@ class MainViewModel : ViewModel() {
                 // Check if the response is successful (HTTP status code 2xx)
                 if (response.isSuccessful) {
                     _listReview.value = response.body()?.customerReviews
+                    _snackbarText.value = Event(response.body()?.message.toString())
                 } else {
                     // Log an error message if the response is not successful
                     Log.e(TAG, "onFailure: ${response.message()}")
