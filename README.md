@@ -42,3 +42,6 @@ This link contains a background thread and Networking:
 This link contains a android architecture component:
 
 - [architecture-view-model: Learn how to implement ViewModel](https://github.com/kisahtegar/FundamentalAndroid/tree/architecture-view-model)
+- [architecture-live-data: Learn how to implemet LiveData.](https://github.com/kisahtegar/FundamentalAndroid/tree/architecture-live-data)
+- [architecture-live-data-api: Learn how to implemet LiveData with Retrofit API.](https://github.com/kisahtegar/FundamentalAndroid/tree/architecture-live-data-api)
+- [architecture-live-data-single-event: Learn how to implemet LiveData with Single Event.](https://github.com/kisahtegar/FundamentalAndroid/tree/architecture-live-data-single-event)
