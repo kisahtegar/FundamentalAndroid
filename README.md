@@ -45,3 +45,10 @@ This link contains a android architecture component:
 - [architecture-live-data: Learn how to implemet LiveData.](https://github.com/kisahtegar/FundamentalAndroid/tree/architecture-live-data)
 - [architecture-live-data-api: Learn how to implemet LiveData with Retrofit API.](https://github.com/kisahtegar/FundamentalAndroid/tree/architecture-live-data-api)
 - [architecture-live-data-single-event: Learn how to implemet LiveData with Single Event.](https://github.com/kisahtegar/FundamentalAndroid/tree/architecture-live-data-single-event)
+
+
+## 📋 Submission
+
+This link contains a submission:
+
+- [application_gitHub_user: This project for early submission. This app used to showing user in github with Navigation and API.](https://github.com/kisahtegar/application_gitHub_user)
