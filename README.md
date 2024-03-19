@@ -46,6 +46,12 @@ This link contains a android architecture component:
 - [architecture-live-data-api: Learn how to implemet LiveData with Retrofit API.](https://github.com/kisahtegar/FundamentalAndroid/tree/architecture-live-data-api)
 - [architecture-live-data-single-event: Learn how to implemet LiveData with Single Event.](https://github.com/kisahtegar/FundamentalAndroid/tree/architecture-live-data-single-event)
 
+## 🧪 Testing
+
+This link contains a Unit & UI Testing:
+
+- [testing: Learn how to implement unit testing and UI testing using JUnit, Mockito and Espresso.](https://github.com/kisahtegar/FundamentalAndroid/tree/testing)
+
 
 ## 📋 Submission
 
