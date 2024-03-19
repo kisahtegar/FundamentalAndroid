@@ -12,5 +12,5 @@ Learn how to implement unit testing and UI testing using JUnit, Mockito and Espr
 
 <img src="preview_1.png" alt="Preview 1" width="200" height="400">
 <img src="preview_2.png" alt="Preview 1" width="200" height="400">
-<img src="preview_ui_test.png" alt="Preview 1" width="500" height="250">
-<img src="preview_unit_test.png" alt="Preview 1" width="500" height="250">
+<img src="preview_ui_test.png" alt="Preview 1" width="800" height="200">
+<img src="preview_unit_test.png" alt="Preview 1" width="800" height="200">
