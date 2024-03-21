@@ -57,7 +57,11 @@ This link contains a Unit & UI Testing:
 
 This link contains a local data persistent:
 
--[local-data-persistent-file-storage: Implementation of the process of saving and opening files.](https://github.com/kisahtegar/FundamentalAndroid/tree/local-data-persistent-file-storage)
+- [local-data-persistent-file-storage: Implementation of the process of saving and opening files.](https://github.com/kisahtegar/FundamentalAndroid/tree/local-data-persistent-file-storage)
+- [local-data-persistent-shared-preferences: Learn how to save and read data from Shared Preferences.](https://github.com/kisahtegar/FundamentalAndroid/tree/local-data-persistent-shared-preferences)
+- [local-data-persistent-shared-preferences-settings: Learn how to create Settings using SharedPreference (Preferences Settings Screen).](https://github.com/kisahtegar/FundamentalAndroid/tree/local-data-persistent-shared-preferences-settings)
+- [local-data-persistent-sqlite: Learn how to create a Notes application to record simple agendas using SQLite.](https://github.com/kisahtegar/FundamentalAndroid/tree/local-data-persistent-sqlite)
+- [local-data-persistent-room: Learn how to create a Notes application to record simple agendas using Room.](https://github.com/kisahtegar/FundamentalAndroid/tree/local-data-persistent-room)
 
 
 ## 📋 Submission
