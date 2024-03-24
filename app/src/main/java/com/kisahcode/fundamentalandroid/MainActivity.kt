@@ -3,7 +3,10 @@ package com.kisahcode.fundamentalandroid
 import android.Manifest
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
@@ -63,6 +66,19 @@ class MainActivity : AppCompatActivity() {
      * @param message Message of the notification.
      */
     private fun sendNotification(title: String, message: String) {
+        // Create an intent to open a webpage when notification is clicked.
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://dicoding.com"))
+
+        // Create a PendingIntent to handle the intent when notification is clicked.
+        val pendingIntent = PendingIntent.getActivity(
+            this,
+            0,
+            intent,
+            // Use PendingIntent.FLAG_IMMUTABLE if supported by the device's SDK version.
+            // This flag makes the PendingIntent immutable to prevent modifications.
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) PendingIntent.FLAG_IMMUTABLE else 0
+        )
+
         // Get notification manager service.
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
@@ -73,6 +89,8 @@ class MainActivity : AppCompatActivity() {
             .setContentText(message)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setSubText(getString(R.string.notification_subtext))
+            .setContentIntent(pendingIntent) // Set the PendingIntent for when the notification is clicked.
+            .setAutoCancel(true) // Automatically dismiss the notification when clicked.
 
         // Create notification channel if the Android version is Oreo or above.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
