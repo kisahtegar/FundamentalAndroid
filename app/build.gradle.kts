@@ -9,9 +9,9 @@ android {
 
     defaultConfig {
         applicationId = "com.kisahcode.fundamentalandroid"
-        minSdk = 24
+        minSdk = 21
         //noinspection ExpiredTargetSdkVersion
-        targetSdk = 24
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -26,6 +26,9 @@ android {
                 "proguard-rules.pro"
             )
         }
+    }
+    buildFeatures {
+        viewBinding = true
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8

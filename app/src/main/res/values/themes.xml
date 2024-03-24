@@ -6,4 +6,6 @@
     </style>
 
     <style name="Theme.FundamentalAndroid" parent="Base.Theme.FundamentalAndroid" />
+
+    <style name="Theme.FundamentalAndroid.Dialog" parent="Theme.Material3.DayNight.Dialog" />
 </resources>
