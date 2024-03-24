@@ -65,6 +65,14 @@ This link contains a local data persistent:
 - [local-data-persistent-repository-injection: Learn how to implement Repository and Injection in a news portal application.](https://github.com/kisahtegar/FundamentalAndroid/tree/local-data-persistent-repository-injection)
 
 
+# 📅 Background Task & Scheduler
+
+This link contains a Background Task & Scheduler:
+
+- [background-task-scheduler-broadcast-receiver: Learn how to implement BroadcastReceiver of SMS Event and Custom Event.](https://github.com/kisahtegar/FundamentalAndroid/tree/background-task-scheduler-broadcast-receiver)
+
+
+
 ## 📋 Submission
 
 This link contains a submission:
