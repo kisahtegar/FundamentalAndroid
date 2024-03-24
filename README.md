@@ -62,6 +62,7 @@ This link contains a local data persistent:
 - [local-data-persistent-shared-preferences-settings: Learn how to create Settings using SharedPreference (Preferences Settings Screen).](https://github.com/kisahtegar/FundamentalAndroid/tree/local-data-persistent-shared-preferences-settings)
 - [local-data-persistent-sqlite: Learn how to create a Notes application to record simple agendas using SQLite.](https://github.com/kisahtegar/FundamentalAndroid/tree/local-data-persistent-sqlite)
 - [local-data-persistent-room: Learn how to create a Notes application to record simple agendas using Room.](https://github.com/kisahtegar/FundamentalAndroid/tree/local-data-persistent-room)
+- [local-data-persistent-repository-injection: Learn how to implement Repository and Injection in a news portal application.](https://github.com/kisahtegar/FundamentalAndroid/tree/local-data-persistent-repository-injection)
 
 
 ## 📋 Submission
