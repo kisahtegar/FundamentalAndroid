@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
+import androidx.core.app.TaskStackBuilder
 import com.kisahcode.fundamentalandroid.databinding.ActivityMainBinding
 
 /**
@@ -58,6 +59,14 @@ class MainActivity : AppCompatActivity() {
         binding.btnSendNotification.setOnClickListener {
             sendNotification(title, message)
         }
+
+        // Set OnClickListener for the button to open detail activity.
+        binding.btnOpenDetail.setOnClickListener{
+            val detailIntent = Intent(this@MainActivity, DetailActivity::class.java)
+            detailIntent.putExtra(DetailActivity.EXTRA_TITLE, title)
+            detailIntent.putExtra(DetailActivity.EXTRA_MESSAGE, message)
+            startActivity(detailIntent)
+        }
     }
 
     /**
@@ -66,18 +75,24 @@ class MainActivity : AppCompatActivity() {
      * @param message Message of the notification.
      */
     private fun sendNotification(title: String, message: String) {
-        // Create an intent to open a webpage when notification is clicked.
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://dicoding.com"))
+
+        // Create intent to open DetailActivity when notification is clicked.
+        val notifDetailIntent = Intent(this, DetailActivity::class.java)
+        notifDetailIntent.putExtra(DetailActivity.EXTRA_TITLE, title)
+        notifDetailIntent.putExtra(DetailActivity.EXTRA_MESSAGE, message)
 
         // Create a PendingIntent to handle the intent when notification is clicked.
-        val pendingIntent = PendingIntent.getActivity(
-            this,
-            0,
-            intent,
+        val pendingIntent = TaskStackBuilder.create(this).run {
+            addNextIntentWithParentStack(notifDetailIntent)
+
             // Use PendingIntent.FLAG_IMMUTABLE if supported by the device's SDK version.
             // This flag makes the PendingIntent immutable to prevent modifications.
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) PendingIntent.FLAG_IMMUTABLE else 0
-        )
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                getPendingIntent(NOTIFICATION_ID, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+            } else {
+                getPendingIntent(NOTIFICATION_ID, PendingIntent.FLAG_UPDATE_CURRENT)
+            }
+        }
 
         // Get notification manager service.
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager

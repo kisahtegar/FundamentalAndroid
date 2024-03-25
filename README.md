@@ -1,6 +1,6 @@
-# Notification App
+# Task & Back Stack with TaskStackBuilder (Notification App)
 
-Learn how to implement Notification with NotificationBuilder, NotificatonManager & PendingIntent:
+Learn how to implement Task & Back Stack with TaskStackBuilder, PendingIntent:
 
 | Nama Project                  | SimpleNotif                    |
 |-------------------------------|--------------------------------|
