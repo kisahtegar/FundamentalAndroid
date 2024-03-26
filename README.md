@@ -1,6 +1,6 @@
 # Alarm Manager
 
-Learn how to implement AlarmManager like One-Time-Execution, Repeating and Cancel AlarmManager.
+Learn how to implement AlarmManager like One-Time-Execution, Repeating and Canceling AlarmManager.
 
 | Nama Project                  | MyAlarmManager                 |
 |-------------------------------|--------------------------------|
@@ -12,3 +12,4 @@ Learn how to implement AlarmManager like One-Time-Execution, Repeating and Cance
 
 <img src="preview_1.gif" alt="Preview" width="200" height="400">
 <img src="preview_2.gif" alt="Preview" width="200" height="400">
+<img src="preview_3.gif" alt="Preview" width="600" height="250">

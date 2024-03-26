@@ -63,6 +63,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, DatePickerFragme
         // Set up click listeners for repeating-alarm buttons
         binding?.btnRepeatingTime?.setOnClickListener(this)
         binding?.btnSetRepeatingAlarm?.setOnClickListener(this)
+        binding?.btnCancelRepeatingAlarm?.setOnClickListener(this)
+
 
         // Initialize AlarmReceiver instance
         alarmReceiver = AlarmReceiver()
@@ -107,6 +109,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, DatePickerFragme
                 alarmReceiver.setRepeatingAlarm(this, AlarmReceiver.TYPE_REPEATING,
                     repeatTime, repeatMessage)
             }
+            // Cancel repeating alarm when 'Cancel Repeating Alarm' button is clicked
+            R.id.btn_cancel_repeating_alarm -> alarmReceiver.cancelAlarm(
+                this,
+                AlarmReceiver.TYPE_REPEATING
+            )
         }
     }
 

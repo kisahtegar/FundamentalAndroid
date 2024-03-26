@@ -198,6 +198,37 @@ class AlarmReceiver : BroadcastReceiver() {
     }
 
     /**
+     * Cancels a previously set alarm.
+     *
+     * This method cancels either a one-time or repeating alarm based on the provided type.
+     * @param context The context in which the alarm was set.
+     * @param type The type of alarm to be canceled ("OneTimeAlarm" or "RepeatingAlarm").
+     */
+    fun cancelAlarm(context: Context, type: String) {
+        // Get the AlarmManager system service
+        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+
+        // Create an intent for the AlarmReceiver
+        val intent = Intent(context, AlarmReceiver::class.java)
+
+        // Determine the request code based on the type of alarm
+        val requestCode = if (type.equals(TYPE_ONE_TIME, ignoreCase = true)) ID_ONETIME else ID_REPEATING
+
+        // Create a PendingIntent for the alarm
+        val pendingIntent = PendingIntent.getBroadcast(context, requestCode, intent, PendingIntent.FLAG_IMMUTABLE)
+
+        // Check if the PendingIntent exists
+        if (pendingIntent != null) {
+            // Cancel the PendingIntent and the alarm
+            pendingIntent.cancel()
+            alarmManager.cancel(pendingIntent)
+
+            // Show a toast message indicating that the alarm is canceled
+            Toast.makeText(context, "Repeating alarm dibatalkan", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    /**
      * Checks if the provided date is valid according to the specified format.
      *
      * This method validates the format of the date string using the provided format pattern.
