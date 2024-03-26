@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    id("com.google.devtools.ksp")
+    alias(libs.plugins.googleDevtoolsKsp)
     id("kotlin-parcelize")
 }
 
@@ -43,6 +43,7 @@ android {
 
 dependencies {
 
+    // UI
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -53,10 +54,12 @@ dependencies {
     implementation(libs.androidx.lifecycle.livedata.ktx)
 
     implementation(libs.androidx.room.runtime)
-//    ksp(libs.room.compiler)
+    ksp(libs.room.compiler)
 //    ksp("androidx.room:room-compiler:2.5.2")
-    ksp("androidx.room:room-compiler:2.6.1")
+//    ksp("androidx.room:room-compiler:2.6.1")
 
+
+    // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

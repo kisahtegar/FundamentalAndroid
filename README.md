@@ -13,4 +13,3 @@ Learn how to create a Notes application to record simple agendas using Room.
 <img src="preview_1.png" alt="Preview 1" width="200" height="400">
 <img src="preview_2.png" alt="Preview 2" width="200" height="400">
 <img src="preview_3.png" alt="Preview 3" width="200" height="400">
-<img src="preview_4.png" alt="Preview 4" width="200" height="400">

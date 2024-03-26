@@ -1,5 +1,6 @@
 package com.kisahcode.fundamentalandroid.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.kisahcode.fundamentalandroid.R
 import com.kisahcode.fundamentalandroid.databinding.ActivityMainBinding
 import com.kisahcode.fundamentalandroid.helper.ViewModelFactory
+import com.kisahcode.fundamentalandroid.ui.insert.NoteAddUpdateActivity
 
 /**
  * Main activity displaying a list of notes.
@@ -43,6 +45,12 @@ class MainActivity : AppCompatActivity() {
         binding?.rvNotes?.layoutManager = LinearLayoutManager(this)
         binding?.rvNotes?.setHasFixedSize(true)
         binding?.rvNotes?.adapter = adapter
+
+        // Set on click listener
+        binding?.fabAdd?.setOnClickListener {
+            val intent = Intent(this@MainActivity, NoteAddUpdateActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onDestroy() {
