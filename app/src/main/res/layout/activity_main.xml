@@ -9,6 +9,7 @@
     android:padding="16dp"
     tools:context=".MainActivity">
 
+    <!--  ONE TIME ALARM  -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,6 +17,8 @@
         android:text="@string/one_time_alarm"
         android:textSize="16sp"
         android:textStyle="bold" />
+
+    <!-- Date alarm-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,6 +36,8 @@
             android:layout_height="wrap_content"
             android:text="@string/alarm_date" />
     </LinearLayout>
+
+    <!-- Time alarm-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -50,6 +55,7 @@
             android:layout_height="wrap_content"
             android:text="@string/alarm_time" />
     </LinearLayout>
+
     <EditText
         android:id="@+id/edt_once_message"
         android:layout_width="match_parent"
@@ -64,6 +70,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="@string/set_one_time_alarm" />
+
+    <!--  REPEATING ALARM  -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -71,6 +79,7 @@
         android:text="@string/repeating_alarm"
         android:textSize="16sp"
         android:textStyle="bold" />
+    <!--  Time Alarm  -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -88,12 +97,33 @@
             android:layout_height="wrap_content"
             android:text="@string/alarm_time" />
     </LinearLayout>
+
     <EditText
         android:id="@+id/edt_repeating_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:hint="@string/alarm_message"
-        android:importantForAutofill="no"
         android:inputType="text" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_cancel_repeating_alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1"
+            android:text="@string/cancel_alarm" />
+        <Button
+            android:id="@+id/btn_set_repeating_alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_weight="1"
+            android:text="@string/set_repeating_alarm" />
+    </LinearLayout>
 </LinearLayout>

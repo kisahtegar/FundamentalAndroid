@@ -55,10 +55,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, DatePickerFragme
             requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
         }
 
-        // Set up click listeners for buttons
+        // Set up click listeners for one-time-alarm buttons
         binding?.btnOnceDate?.setOnClickListener(this)
         binding?.btnOnceTime?.setOnClickListener(this)
         binding?.btnSetOnceAlarm?.setOnClickListener(this)
+
+        // Set up click listeners for repeating-alarm buttons
+        binding?.btnRepeatingTime?.setOnClickListener(this)
+        binding?.btnSetRepeatingAlarm?.setOnClickListener(this)
 
         // Initialize AlarmReceiver instance
         alarmReceiver = AlarmReceiver()
@@ -90,6 +94,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, DatePickerFragme
                     onceDate,
                     onceTime,
                     onceMessage)
+            }
+            // Show time picker dialog when 'Pick Time' button is clicked for repeating alarm
+            R.id.btn_repeating_time -> {
+                val timePickerFragmentRepeat = TimePickerFragment()
+                timePickerFragmentRepeat.show(supportFragmentManager, TIME_PICKER_REPEAT_TAG)
+            }
+            // Set repeating alarm when 'Set Repeating Alarm' button is clicked
+            R.id.btn_set_repeating_alarm -> {
+                val repeatTime = binding?.tvRepeatingTime?.text.toString()
+                val repeatMessage = binding?.edtRepeatingMessage?.text.toString()
+                alarmReceiver.setRepeatingAlarm(this, AlarmReceiver.TYPE_REPEATING,
+                    repeatTime, repeatMessage)
             }
         }
     }
@@ -136,8 +152,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, DatePickerFragme
         when (tag) {
             // If the tag corresponds to the one-time time picker, update the corresponding TextView
             TIME_PICKER_ONCE_TAG -> binding?.tvOnceTime?.text = dateFormat.format(calendar.time)
-            TIME_PICKER_REPEAT_TAG -> {}
-
+            // If the tag corresponds to the repeat-time time picker, update the corresponding TextView
+            TIME_PICKER_REPEAT_TAG -> binding?.tvRepeatingTime?.text = dateFormat.format(calendar.time)
             // For other cases (e.g., repeating time picker), no action is taken
             // You can add specific actions for other cases if needed
             else -> {}

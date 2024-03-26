@@ -147,6 +147,57 @@ class AlarmReceiver : BroadcastReceiver() {
     }
 
     /**
+     * Sets a repeating alarm using AlarmManager.
+     *
+     * This method schedules a repeating alarm to trigger at the specified time every day,
+     * displaying the provided message when the alarm fires.
+     * @param context The context in which the alarm should be set.
+     * @param type The type of alarm ("OneTimeAlarm" or "RepeatingAlarm").
+     * @param time The time at which the alarm should trigger (in "HH:mm" format).
+     * @param message The message to be displayed when the alarm triggers.
+     */
+    fun setRepeatingAlarm(context: Context, type: String, time: String, message: String) {
+        // Check if the provided time format is invalid
+        if (isDateInvalid(time, TIME_FORMAT)) return
+
+        // Get the AlarmManager system service
+        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+
+        // Create an intent to be broadcasted when the alarm triggers
+        val intent = Intent(context, AlarmReceiver::class.java)
+        intent.putExtra(EXTRA_MESSAGE, message)
+        intent.putExtra(EXTRA_TYPE, type)
+
+        // Extract hour and minute components from the input time string
+        val timeArray = time.split(":".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+
+        // Set up the calendar object with the specified time
+        val calendar = Calendar.getInstance()
+        calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(timeArray[0]))
+        calendar.set(Calendar.MINUTE, Integer.parseInt(timeArray[1]))
+        calendar.set(Calendar.SECOND, 0)
+
+        // Create a PendingIntent for the repeating alarm
+        val pendingIntent = PendingIntent.getBroadcast(
+            context,
+            ID_REPEATING,
+            intent,
+            PendingIntent.FLAG_IMMUTABLE
+        )
+
+        // Set the repeating alarm using AlarmManager
+        alarmManager.setInexactRepeating(
+            AlarmManager.RTC_WAKEUP,
+            calendar.timeInMillis,
+            AlarmManager.INTERVAL_DAY,
+            pendingIntent
+        )
+
+        // Show a toast message indicating that the repeating alarm is set up
+        Toast.makeText(context, "Repeating alarm set up", Toast.LENGTH_SHORT).show()
+    }
+
+    /**
      * Checks if the provided date is valid according to the specified format.
      *
      * This method validates the format of the date string using the provided format pattern.
