@@ -1,6 +1,6 @@
 # WorkManager
 
-Learn how to implement WorkManager
+Learn how to implement one-time and periodic task using WorkManager.
 
 | Nama Project                  | MyWorkManager                  |
 |-------------------------------|--------------------------------|
@@ -11,3 +11,4 @@ Learn how to implement WorkManager
 | Build Configuration Language  | Kotlin DSL                     |
 
 <img src="preview_1.gif" alt="Preview 1" width="200" height="400">
+<img src="preview_2.gif" alt="Preview 2" width="200" height="400">
